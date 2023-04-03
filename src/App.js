@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [count, setCount] = useState(0);
+  const [location, setLocation] = useState("mumbai");
+  // let count = 0;
+  const increaseCount = () => {
+    setCount(count + 1);
+  };
+
+  useEffect(() => {
+    setLocation("mumbai");
+    console.log("useEffect called", count);
+  }, [count]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar count={count} location={location} />
+      {/* <h1>You have clicked count this many times{count}</h1> */}
+      <button onClick={increaseCount}>Increase count</button>
     </div>
   );
 }
